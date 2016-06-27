@@ -1,0 +1,19 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.caiji.android.reflecandinocation.Fragment.LiWuFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+   <android.support.design.widget.TabLayout
+       android:id="@+id/fragment_liwu_tablayout"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"></android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/fragment_liwu_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/fragment_liwu_tablayout"
+        ></android.support.v4.view.ViewPager>
+</RelativeLayout>
