@@ -49,11 +49,12 @@ public class ChoicenessFragment extends Fragment {
         mContext=getActivity();
         initData();
         initListViewAdapter();
-        return null;
+        return view;
     }
 
     private void initListViewAdapter() {
-
+            MyListViewAdapter adapter=new MyListViewAdapter();
+            listview.setAdapter(adapter);
     }
 
     /**
