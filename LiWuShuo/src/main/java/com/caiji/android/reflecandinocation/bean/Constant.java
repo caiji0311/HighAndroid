@@ -5,5 +5,5 @@ package com.caiji.android.reflecandinocation.bean;
  */
 public class Constant {
 
-    public static final String GiderTitle="http://api.liwushuo.com/v2/Channels/preset?gender=1&generation=2";
+    public static final String GiderTitle="http://api.liwushuo.com/v2/channels/preset?gender=1&generation=2";
 }

@@ -16,14 +16,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.caiji.android.reflecandinocation.R;
+import com.caiji.android.reflecandinocation.bean.Candidates;
+import com.caiji.android.reflecandinocation.bean.Channels;
 import com.caiji.android.reflecandinocation.bean.ChoiceTitle;
 import com.caiji.android.reflecandinocation.bean.Constant;
 import com.caiji.android.reflecandinocation.downloadJsonAsyncTask.DownLoadJsonTask;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class LiWuFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -77,44 +81,46 @@ public class LiWuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_li_wu, container, false);
-        Log.i("caicai", "onCreateView: qqqq");
+        ButterKnife.bind(this,view);
         initTitleData();
-        initPagerData();
-        initPagerAdapter();
-        tabLayout.setupWithViewPager(viewPager);
+
+
+
         return view;
 
     }
 
     private void initPagerAdapter() {
         MyPagerAdapter adapter = new MyPagerAdapter(getActivity().getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
     }
 
     private void initPagerData() {
          fragmentList=new ArrayList<>();
         fragmentList.add(new ChoicenessFragment());
-        fragmentList.add( new OtherFragment());
-        fragmentList.add( new OtherFragment());
-        fragmentList.add( new OtherFragment());
-        fragmentList.add( new OtherFragment());
-        fragmentList.add( new OtherFragment());
+        for (int i=0;i<12;i++){
+        fragmentList.add(new OtherFragment());
+        }
     }
 
     private void initTitleData() {
         titleList=new ArrayList<>();
-        titleList.add("精品");
-        titleList.add("精品");
-        titleList.add("精品");
-        titleList.add("精品");
-        titleList.add("精品");
-        titleList.add("精品");
+
         DownLoadJsonTask task=new DownLoadJsonTask(getActivity(), new DownLoadJsonTask.CallBack() {
             @Override
             public void callback(String result) {
                 Gson gson=new Gson();
-                Log.i("caicai", "callback:1   "+result);
-               ChoiceTitle choiceTitle= gson.fromJson(result, ChoiceTitle.class);
-                Log.i("caicai", "callback:2 "+choiceTitle.toString());
+
+                ChoiceTitle choiceTitle= gson.fromJson(result, ChoiceTitle.class);
+              List<Channels> channelsList= choiceTitle.getData().getchannels();
+                for (int i=0;i<channelsList.size();i++){
+                    titleList.add(channelsList.get(i).getName());
+                }
+                Log.i("caicai", "callback:1   "+titleList.toString());
+                //绑定适配器
+                initPagerData();
+                initPagerAdapter();
+                tabLayout.setupWithViewPager(viewPager);
             }
         });
         task.execute(Constant.GiderTitle);
