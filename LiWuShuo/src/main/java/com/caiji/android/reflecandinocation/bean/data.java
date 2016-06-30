@@ -1,5 +1,6 @@
 package com.caiji.android.reflecandinocation.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,30 +8,50 @@ import java.util.List;
  */
 public class Data {
 
-    public List<Channels> channels;
-    public List<Candidates> candidates;
+    public ArrayList<Channels> channels;
+    public ArrayList<Candidates> candidates;
+    public ArrayList<Items> items;
+    public Paging paging;
 
     @Override
     public String toString() {
         return "Data{" +
-                "channelses=" + channels +
-                ", Candidates=" + candidates +
+                "channels=" + channels +
+                ", candidates=" + candidates +
+                ", items=" + items +
+                ", paging=" + paging +
                 '}';
     }
 
-    public List<Channels> getchannels() {
+    public ArrayList<Channels> getChannels() {
         return channels;
     }
 
-    public void setChannelses(List<Channels> channels) {
+    public void setChannels(ArrayList<Channels> channels) {
         this.channels = channels;
     }
 
-    public List<Candidates> getCandidates() {
+    public ArrayList<Candidates> getCandidates() {
         return candidates;
     }
 
-    public void setCandidates(List<Candidates> candidates) {
+    public void setCandidates(ArrayList<Candidates> candidates) {
         this.candidates = candidates;
+    }
+
+    public ArrayList<Items> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<Items> items) {
+        this.items = items;
+    }
+
+    public Paging getPaging() {
+        return paging;
+    }
+
+    public void setPaging(Paging paging) {
+        this.paging = paging;
     }
 }

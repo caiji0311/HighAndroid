@@ -5,7 +5,26 @@
 <ImageView
     android:id="@+id/fragment_choiceness_childlist_iv"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:src="@mipmap/ic_launcher"
+    android:layout_height="200dp"
     android:scaleType="centerCrop"/>
+    <TextView
+        android:id="@+id/fragment_choiceness_childlist_tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textSize="15sp"
+        android:textColor="#ffffff"
+        android:text="aaaass"
+        android:gravity="left"
+        android:background="#00000000"/>
+    <TextView
+        android:id="@+id/fragment_choiceness_childlist_tv2"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/ic_feed_favourite_normal"
+        android:text="1000"
+        android:gravity="center"
+        android:textSize="15sp"/>
 </RelativeLayout>

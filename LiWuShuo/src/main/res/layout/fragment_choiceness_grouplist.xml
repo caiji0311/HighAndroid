@@ -15,7 +15,7 @@
         android:id="@+id/fragment_choiceness_grouplist_tvRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="qqqqqq"
+
         android:layout_alignParentRight="true"
         android:layout_alignBottom="@id/fragment_choiceness_grouplist_tvLeft"
         android:gravity="center"

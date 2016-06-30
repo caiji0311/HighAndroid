@@ -2,49 +2,77 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.caiji.android.reflecandinocation.MainActivity">
+    <RelativeLayout
+        android:id="@+id/activity_main_menu_rl"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#ff0000">
+        <ImageView
+            android:id="@+id/activity_main_menu_ivLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more_contribution"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:id="@+id/activity_main_menu_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="礼物说"
+            android:textSize="15sp"
+            android:layout_centerInParent="true"/>
+        <ImageView
+            android:id="@+id/activity_main_menu_ivRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/abc_ic_search_api_holo_light"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"/>
+    </RelativeLayout>
     <RadioGroup
         android:id="@+id/activity_main_rg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
         <RadioButton
             android:id="@+id/activity_main_rb1"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:button="@null"
             android:text="礼物说"/>
         <RadioButton
             android:id="@+id/activity_main_rb2"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:button="@null"
-            android:text="礼物说"
+            android:text="热门"
             />
         <RadioButton
             android:id="@+id/activity_main_rb3"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:button="@null"
-            android:text="礼物说"/>
+            android:text="分类"/>
         <RadioButton
             android:id="@+id/activity_main_rb4"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:button="@null"
-            android:text="礼物说"/>
+            android:text="我"/>
 
     </RadioGroup>
 <FrameLayout
     android:id="@+id/activity_main_framlayout"
+    android:layout_below="@id/activity_main_menu_rl"
     android:layout_above="@id/activity_main_rg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

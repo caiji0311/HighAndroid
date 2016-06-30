@@ -2,6 +2,7 @@ package com.caiji.android.reflecandinocation.Fragment;
 
 import android.content.Context;
 
+import android.graphics.AvoidXfermode;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -45,6 +46,8 @@ public class LiWuFragment extends Fragment {
 
     @BindView(R.id.fragment_liwu_viewpager)
     public ViewPager viewPager;
+
+    public  List<Channels> channelsList;
     private ArrayList<Fragment> fragmentList;
     private ArrayList<String> titleList;
 
@@ -52,21 +55,11 @@ public class LiWuFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment LiWuFragment.
-     */
+
     // TODO: Rename and change types and number of parameters
-    public static LiWuFragment newInstance(String param1, String param2) {
+    public static LiWuFragment newInstance() {
         LiWuFragment fragment = new LiWuFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -83,9 +76,7 @@ public class LiWuFragment extends Fragment {
         View view =inflater.inflate(R.layout.fragment_li_wu, container, false);
         ButterKnife.bind(this,view);
         initTitleData();
-
-
-
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         return view;
 
     }
@@ -97,12 +88,15 @@ public class LiWuFragment extends Fragment {
 
     private void initPagerData() {
          fragmentList=new ArrayList<>();
-        fragmentList.add(new ChoicenessFragment());
+        fragmentList.add(ChoicenessFragment.newInstance(channelsList.get(0).getId()));
         for (int i=0;i<12;i++){
-        fragmentList.add(new OtherFragment());
+        fragmentList.add(OtherFragment.newInstance(channelsList.get(i+1).getId()));
         }
     }
 
+    /**
+     * 初始化TabLayout的标题内容   网上解析
+     * */
     private void initTitleData() {
         titleList=new ArrayList<>();
 
@@ -110,13 +104,14 @@ public class LiWuFragment extends Fragment {
             @Override
             public void callback(String result) {
                 Gson gson=new Gson();
-
+                if (null==result){
+                    return;
+                }
                 ChoiceTitle choiceTitle= gson.fromJson(result, ChoiceTitle.class);
-              List<Channels> channelsList= choiceTitle.getData().getchannels();
+                 channelsList= choiceTitle.getData().getChannels();
                 for (int i=0;i<channelsList.size();i++){
                     titleList.add(channelsList.get(i).getName());
                 }
-                Log.i("caicai", "callback:1   "+titleList.toString());
                 //绑定适配器
                 initPagerData();
                 initPagerAdapter();
@@ -133,6 +128,10 @@ public class LiWuFragment extends Fragment {
         super.onAttach(context);
 
     }
+
+    /**
+     * 自定义适配器
+     * */
   class MyPagerAdapter extends FragmentPagerAdapter {
 
 
