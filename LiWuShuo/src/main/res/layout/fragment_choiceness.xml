@@ -5,8 +5,8 @@
     >
 
     <!-- TODO: Update choiceness fragment layout -->
-<ExpandableListView
+<com.handmark.pulltorefresh.library.PullToRefreshExpandableListView
     android:id="@+id/fragment_choiceness_explv"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"></ExpandableListView>
+    android:layout_height="match_parent"></com.handmark.pulltorefresh.library.PullToRefreshExpandableListView>
 </FrameLayout>

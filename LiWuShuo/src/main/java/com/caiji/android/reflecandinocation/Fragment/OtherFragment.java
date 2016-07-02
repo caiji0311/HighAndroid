@@ -20,6 +20,7 @@ import com.caiji.android.reflecandinocation.bean.Items;
 import com.caiji.android.reflecandinocation.utils.IOKCallBack;
 import com.caiji.android.reflecandinocation.utils.OkHttpTool;
 import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -66,8 +67,10 @@ public class OtherFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_choiceness, null);
-        listView = (ExpandableListView) view.findViewById(R.id.fragment_choiceness_explv);
-       initListViewAdapter();
+        PullToRefreshExpandableListView pullToRefreshExpandableListView=
+                (PullToRefreshExpandableListView) view.findViewById(R.id.fragment_choiceness_explv);
+        listView = pullToRefreshExpandableListView.getRefreshableView();
+        initListViewAdapter();
         initData();
         return view;
     }

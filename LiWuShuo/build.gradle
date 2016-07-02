@@ -36,5 +36,6 @@ dependencies {
     compile 'com.jakewharton:disklrucache:2.0.2'
     compile 'com.bigkoo:convenientbanner:2.0.5'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile project(':library')
 
 }

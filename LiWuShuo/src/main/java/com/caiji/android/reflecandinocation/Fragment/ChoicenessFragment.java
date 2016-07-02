@@ -46,6 +46,9 @@ import com.caiji.android.reflecandinocation.imageloader.ImageLoader;
 import com.caiji.android.reflecandinocation.utils.IOKCallBack;
 import com.caiji.android.reflecandinocation.utils.OkHttpTool;
 import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -64,7 +67,7 @@ import butterknife.ButterKnife;
 public class ChoicenessFragment extends Fragment {
 
     @BindView(R.id.fragment_choiceness_explv)
-    public ExpandableListView listview;
+    public PullToRefreshExpandableListView pullToRefreshExpandableListView;
 
     public  Map<String,List<Items>> datas=new ArrayMap<>();
 
@@ -75,6 +78,7 @@ public class ChoicenessFragment extends Fragment {
     private HeaderViewHolder headerViewHolder;
     private ArrayList<Object> imageDatas=new ArrayList<>();
     private ArrayList<Object> smallImage=new ArrayList<>();
+    private ExpandableListView listview;
 
 
     public static ChoicenessFragment newInstance(String id) {
@@ -101,13 +105,38 @@ public class ChoicenessFragment extends Fragment {
 
         View view=inflater.inflate(R.layout.fragment_choiceness,null);
         ButterKnife.bind(this,view);
+         listview=pullToRefreshExpandableListView.getRefreshableView();
         initHeaderView(inflater);
         mContext=getActivity();
         initListViewAdapter();
         initData();
         initHeaderListener();
         initListViewScrollListener();
+        setupPullRefreshLV();
+
+
         return view;
+    }
+
+    /**
+     * 对PullToRefreshListView设置上拉刷新  下拉刷新
+     * */
+    private void setupPullRefreshLV() {
+        //设置 上拉  下拉 两种模式
+        pullToRefreshExpandableListView.setMode(PullToRefreshBase.Mode.BOTH);
+        //对刷新动作进行监听
+        pullToRefreshExpandableListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ExpandableListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ExpandableListView> refreshView) {
+                //上拉刷新时对刷新动画进行自己的设置     改写PullToRefreshExpandleListView源码
+
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ExpandableListView> refreshView) {
+
+            }
+        });
     }
 
     private void initListViewScrollListener() {
